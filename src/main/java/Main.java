@@ -35,27 +35,18 @@ public final class Main {
         int numNodes = createInputFile(new Path(input), inputPath);
 
         int iter = 1;
-        double desiredConvergence = 0.01;
         Path lastPath;
 
-        while (true) {
+        Path jobOutputPath = new Path(outputPath, String.valueOf(iter));
+        lastPath=jobOutputPath;
 
-            Path jobOutputPath = new Path(outputPath, String.valueOf(iter));
-            lastPath=jobOutputPath;
+        System.out.println("======================================");
+        System.out.println("=  Iteration:    " + iter);
+        System.out.println("=  Input path:   " + inputPath);
+        System.out.println("=  Output path:  " + jobOutputPath);
+        System.out.println("======================================");
 
-            System.out.println("======================================");
-            System.out.println("=  Iteration:    " + iter);
-            System.out.println("=  Input path:   " + inputPath);
-            System.out.println("=  Output path:  " + jobOutputPath);
-            System.out.println("======================================");
-
-            if (calcPageRank(inputPath, jobOutputPath, numNodes) < desiredConvergence) {
-                System.out.println("Convergence is below " + desiredConvergence + ", we're done");
-                break;
-            }
-            inputPath = jobOutputPath;
-            iter++;
-        }
+        calcPageRank(inputPath, jobOutputPath, numNodes);
 
         //generate output file
         Util util = new Util().generateInAndOutLinks(input);

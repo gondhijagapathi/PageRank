@@ -39,7 +39,7 @@ public class Reduce extends Reducer<Text, Text, Text, Text> {
             }
         }
 
-        double dampingFactor = ((1.0 - DAMPING_FACTOR));
+        double dampingFactor = ((1.0 - DAMPING_FACTOR) / (double) numberOfNodesInGraph);
 
         double newPageRank = dampingFactor + (DAMPING_FACTOR * summedPageRanks);
 
