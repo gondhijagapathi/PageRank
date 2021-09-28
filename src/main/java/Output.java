@@ -137,7 +137,7 @@ public class Output {
                 String data = myReader.nextLine();
                 String pageName = data.split("\t")[0];
                 String rank = data.split("\t")[1].split(",")[0];
-                pages.put(pageName,Double.parseDouble(rank));
+                pages.put(pageName,Double.parseDouble(rank)+1); // add + 1 to rank given
             }
             myReader.close();
         } catch (FileNotFoundException e) {
